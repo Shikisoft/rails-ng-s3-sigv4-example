@@ -1,0 +1,12 @@
+{
+  "name": "dsl-generated-dependencies",
+  "dependencies": {
+    "bootstrap-sass": "latest",
+    "angular": "~> 1.6.2",
+    "ng-file-upload-shim": "latest",
+    "ng-file-upload": "latest"
+  },
+  "resolutions": {
+    "angular": "1.6.2"
+  }
+}

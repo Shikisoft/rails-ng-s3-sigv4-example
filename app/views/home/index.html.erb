@@ -1,0 +1,37 @@
+<header class="row">
+  <div class="col-md-12">
+    <h1>Amazon S3 Upload Signing with Signature Version 4 - Ruby on Rails and AngularJS Example</h1>
+  </div>
+</header>
+
+<section class="row" id="prompt">
+  <div class="col-md-12">
+    <p>This is a simple, example application for signing HTTP requests with Signature Version 4 for uploading documents to an Amazon S3 bucket.</p>
+    <ul>
+      <li>Backend: Ruby on Rails</li>
+      <li>Frontend: AngularJS - Twitter Bootstrap</li>
+    </ul>
+  </div>
+</section>
+
+<section class="row" id="upload-form" ng-controller="PhotosController">
+  <div class="col-md-12">
+    <button type="file" id="sel-file-btn" name="sel-file-btn" class="btn btn-primary btn-lg" ngf-select="selectFile($file, $invalidFiles)" ngf-max-size="5MB" ngf-max-files="1" ngf-pattern="'image/jpeg,image/png,image/gif'" >
+      <span class="glyphicon glyphicon-file"></span>
+       Select File
+    </button>
+     
+     
+     <div class="row" ng-if="progressPercentage" style="margin-top: 1%;">
+       <div class="col-md-12">
+         <div class="progress">
+           <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
+             {{progressPercentage}}%
+           </div>
+         </div>
+       </div>
+     </div>
+     
+
+  </div>
+</section>
