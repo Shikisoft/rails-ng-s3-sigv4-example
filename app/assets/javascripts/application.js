@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
-//= require ng-file-upload-shim
 //= require ng-file-upload
 //= require angular_app
 //= require_tree .

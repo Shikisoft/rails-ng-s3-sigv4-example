@@ -1,5 +1,4 @@
 asset 'bootstrap-sass'
 asset 'angular', '~> 1.6.2'
 resolution 'angular', '1.6.2'
-asset 'ng-file-upload-shim'
 asset 'ng-file-upload'
