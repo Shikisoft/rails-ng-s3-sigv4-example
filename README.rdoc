@@ -1,3 +1,33 @@
 == README
 
 This is an example Rails 4.2, AngularJS 1.6.2 application to sign Amazon S3 bucket upload HTTP requests with Signature Version 4.
+
+## A typical photo uploading scenario
+
+In a typical scenario, 
+- A user uploads a photo directly to one of our Amazon S3 buckets which acts as a temporary storage. 
+- Then one of our background workers, this may be one of Sidekiq or Resque workers, pulls the file, processes it for generating thumbs.
+- Lastly, the worker uploads to its final location in our main bucket. 
+
+As you can see, at the beginning, when user uploads directly to Amazon S3 bucket we use HTTP requests and there should be an authentication mechanism for AWS to verify that this request is done with our knowledge and permission. This is where we need to use Signature Version 4 to sign our request.
+
+In this scenario we are using Ruby on Rails as backend and AngularJS as front end.
+- Rails version: 4.2
+- AngularJS version: 1.5
+- Ruby version: 2.2
+
+Signing process will be realized as follows:
+
+- AngularJS frontend sends a signed policy request to backend
+- Ruby on Rails backend constructs the policy document and signs it with a signing key derived from secret access key.
+- Backend responds to policy requests with signed policy data and signature.
+- AngularJS frontend makes a HTTP request upload the file to Amazon S3 bucket with signature.
+
+## Environment variables
+
+You should define these environment variables to be able to run successfully. Also, never hard code your secret access key or access key id in your code.
+
+- AWS_SECRET_ACCESS_KEY: Secret access key that will be used in signature. It should belong to a user who has access to the S3 bucket.
+- AWS_ACCESS_KEY_ID: Access key ID of AWS_SECRET_ACCESS_KEY.
+- AWS_REGION: AWS region of your Amazon S3 bucket
+- S3_UPLOAD_BUCKET: Amazon S3 bucket name

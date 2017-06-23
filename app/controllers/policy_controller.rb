@@ -4,8 +4,8 @@ class PolicyController < ApplicationController
   def index
     
     # Construct variable that will be used
-    s3_region =  ENV['AWS_REGION']
-    bucket = ENV['AWS_PP_PHOTOS_DIRECT_BUCKET']
+    s3_region =  ENV["AWS_REGION"]
+    bucket = ENV["S3_UPLOAD_BUCKET"]
     
     current_dt = DateTime.now
     policy_date = current_dt.utc.strftime("%Y%m%d")
@@ -33,8 +33,8 @@ class PolicyController < ApplicationController
     def get_signature_key( key, date_stamp, region_name, service_name )
       # This is the AWS algorithm to generate signature key. 
       # Inputs:
-      #   key: Secret access key of your AWS user that will upload this file. Known only by you and AWS. If this is wrong, AWS will be unable to decrypt the policy and upload will be unsuccessfull.
-      #   date_stamp:
+      #   key: Secret access key of your IAM user that has programmatic access and permissions to the bucket. If this is wrong, AWS will be unable to decrypt the policy and upload will be unsuccessfull.
+      #   date_stamp: 8-digit string representing date of the request, in year (YYYY), month (MM), day (DD) format, such as 20170511.
       #   region_name: The region where the bucket belongs to. For example: eu-central-1
       #   service_name: The service that the signature_key is generated for. For this example it will simply be "s3"
       
@@ -49,9 +49,9 @@ class PolicyController < ApplicationController
       # Creates a policy document with an expiration of 1 hour from inputs.
       # Inputs:
       #   bucket: Amazon S3 bucket name that the policy generated for
-      #   x_amz_algorithm: 
-      #   x_amz_credential:
-      #   x_amz_date:
+      #   x_amz_algorithm: The signing algorithm used during signature calculation.
+      #   x_amz_credential: The credentials used for calculating signature.
+      #   x_amz_date: The date of the signature in the ISO8601 formatted string.
       
       Base64.encode64( 
         {
@@ -74,7 +74,7 @@ class PolicyController < ApplicationController
       # Gets signature key and Base64 encoded policy document. Then signs the policy document with signature key.
       # Returns resulting signature
       # Inputs:
-      #   policy_date:
+      #   policy_date: 8-digit string representing date of the request, in year (YYYY), month (MM), day (DD) format, such as 20170511.
       #   s3_region: The region where the bucket belongs to. For example: eu-central-1
       #   encoded_policy: Encoded policy json file that will be signed
       
@@ -94,6 +94,7 @@ class PolicyController < ApplicationController
       else
         "s3.#{region_name}.amazonaws.com"
       end
+      
     end
     
 end
