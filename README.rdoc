@@ -2,7 +2,7 @@
 
 This is an example Rails 4.2, AngularJS 1.6.2 application to sign Amazon S3 bucket upload HTTP requests with Signature Version 4.
 
-## A typical photo uploading scenario
+=== A typical photo uploading scenario
 
 In a typical scenario, 
 - A user uploads a photo directly to one of our Amazon S3 buckets which acts as a temporary storage. 
@@ -23,7 +23,7 @@ Signing process will be realized as follows:
 - Backend responds to policy requests with signed policy data and signature.
 - AngularJS frontend makes a HTTP request upload the file to Amazon S3 bucket with signature.
 
-## Environment variables
+=== Environment variables
 
 You should define these environment variables to be able to run successfully. Also, never hard code your secret access key or access key id in your code.
 
