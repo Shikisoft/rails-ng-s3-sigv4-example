@@ -9,7 +9,8 @@ class PolicyController < ApplicationController
     
     current_dt = DateTime.now
     policy_date = current_dt.utc.strftime("%Y%m%d")
-    x_amz_date = current_dt.utc.strftime("%Y%jT%H%M%SZ")
+    x_amz_date = current_dt.utc.strftime("%Y%m%dT%H%M%SZ")
+
     x_amz_algorithm = "AWS4-HMAC-SHA256"
     x_amz_credential = "#{ENV['AWS_ACCESS_KEY_ID']}/#{policy_date}/#{s3_region}/s3/aws4_request"    
     

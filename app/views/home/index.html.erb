@@ -22,16 +22,19 @@
     </button>
      
      
-     <div class="row" ng-if="progressPercentage" style="margin-top: 1%;">
-       <div class="col-md-12">
-         <div class="progress">
-           <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
-             {{progressPercentage}}%
-           </div>
-         </div>
-       </div>
-     </div>
-     
-
+    <div class="row" ng-if="progressPercentage" style="margin-top: 1%;">
+      <div class="col-md-12">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
+            {{progressPercentage}}%
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="alert alert-success" ng-if="uploadSuccess">Upload finished successfully!</p>
+    <div class="alert alert-danger" ng-if="uploadError">
+      <p>Upload failed!</p>
+      <p>{{responseData}}</p>
+    </div>
   </div>
 </section>

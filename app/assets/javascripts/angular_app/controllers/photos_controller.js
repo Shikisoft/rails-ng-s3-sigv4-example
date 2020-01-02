@@ -4,9 +4,12 @@ app.controller("PhotosController", [
    '$scope', '$http', 'Upload',  
   function( $scope, $http, Upload ) {
     
-
     // Uploads file directly to S3 bucket
     $scope.uploadPhoto= function(){
+
+      // Clear success/error messages
+      $scope.uploadSuccess = null;
+      $scope.uploadError = null;
 
       // Get policy, signature, credentials and algorithm
       $http.get( "/policy.json").then(
@@ -29,8 +32,14 @@ app.controller("PhotosController", [
                 }
             }).then(
               function(response) {
+                // Set flag to display the upload success message
+                $scope.uploadSuccess = true;
               },
               function(response) {
+                // Set flag to display the error messages
+                $scope.uploadError = true;
+                console.log(response);
+                $scope.responseData = response.data;
               },
               function (evt) {
                 $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
@@ -58,10 +67,6 @@ app.controller("PhotosController", [
       }
             
     };
-
-    
-
-
 
   }
 ]);

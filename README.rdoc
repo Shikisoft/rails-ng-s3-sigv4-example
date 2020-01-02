@@ -12,9 +12,10 @@ In a typical scenario,
 As you can see, at the beginning, when user uploads directly to Amazon S3 bucket we use HTTP requests and there should be an authentication mechanism for AWS to verify that this request is done with our knowledge and permission. This is where we need to use Signature Version 4 to sign our request.
 
 In this scenario we are using Ruby on Rails as backend and AngularJS as front end.
-- Rails version: 4.2
+- Rails version: 4.2.11
 - AngularJS version: 1.5
-- Ruby version: 2.2
+- Ruby version: 2.4.9
+- Bundler version: 1.17.3
 
 Signing process will be realized as follows:
 
